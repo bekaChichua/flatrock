@@ -1,0 +1,52 @@
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          spring:
+            registration:
+              client-id: "spring"
+              client-secret: "{bcrypt}$2a$14$ELQqA9s6UXTVJ7a3.5d6cudecZeiyPhTAQN.eHuXC1ePulTwIE4OW"
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authentication_code"
+                - "client_credentials"
+              scopes:
+                - "openid"
+                - "profile"
+                - "email"
+                - "phone"
+                - "address"
+    user:
+      name: test
+      password: "{bcrypt}$2a$14$ELQqA9s6UXTVJ7a3.5d6cudecZeiyPhTAQN.eHuXC1ePulTwIE4OW"
+  datasource:
+    username: root
+    password: Root
+    url: jdbc:mysql://localhost:3306/users?createDatabaseIfNotExist=true
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 15
+      idleTimeout: 30000
+      maxLifetime: 1800000
+      pool-name: MySql-Pool
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        security: trace
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8081

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///${HOME}/Downloads/conf
+          default-label: main
+#  profiles:
+#    active:
+#      - native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/config
+    bus:
+#      destination: http://localhost:5673/
+      id: ${spring.application.name}:${spring.profiles.active}:${random.uuid}
+      enabled: true
+server:
+  port: 8888
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:
+          - bus-refresh
+          - bus-env
+          - refresh

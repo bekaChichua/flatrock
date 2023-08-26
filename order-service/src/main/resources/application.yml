@@ -1,0 +1,15 @@
+spring:
+#  security:
+#    oauth2:
+#        resourceserver:
+#          jwt:
+#            issuer-uri: http://localhost:8080
+  application:
+    name: order-service
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#  config:
+#    import: "optional:configserver:"
+server:
+  port: 8081
